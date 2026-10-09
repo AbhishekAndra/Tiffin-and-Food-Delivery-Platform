@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly | Ghar Ka Khana, Rozana - Tiffin & Food Delivery</title>
+  <meta name="description" content="Healthy, hygienic, home-style daily tiffin subscriptions and instant food delivery delivered hot to your doorstep.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & DM Serif Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div style="background: #1E293B; color: #FFF; font-size: 0.8rem; font-weight: 600; text-align: center; padding: 6px 12px;">
+    🎉 Special Offer: Use code <span style="color: #FF5A1F; font-weight: 800; background: rgba(255, 90, 31, 0.15); padding: 2px 6px; border-radius: 4px;">FIRSTTIFFIN</span> for 20% off your first subscription!
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo-area">
+        <a href="index.html" class="brand-logo">
+          <img src="images/logo.webp" alt="Stackly" class="brand-logo-img">
+        </a>
+
+        <!-- Location Selector -->
+        <button class="location-picker" id="locationPickerBtn" title="Change delivery location">
+          <span class="loc-icon">📍</span>
+          <span id="currentLocationText">Indiranagar, Bengaluru</span>
+          <span style="font-size: 0.7rem; color: var(--muted);">▼</span>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="plans.html">Tiffin Plans</a></li>
+          <li><a href="menu.html">Food Menu</a></li>
+          <li><a href="track.html">Track Order</a></li>
+          <li><a href="about.html">About & FAQs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn-track">Login</a>
+        <a href="track.html" class="btn-track">
+          <span>🛵</span> Track Order
+        </a>
+
+        <a href="cart.html" class="btn-cart" id="btnOpenCart" aria-label="Open Shopping Cart">
+          <span>🛒</span>
+          <span>Cart</span>
+          <span class="cart-count-badge" id="cartBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Qummy-Style Minimalist Modern Hero Section
+       ========================================================================== -->
+  <section class="qummy-hero-section">
+    <div class="container qummy-hero-container">
+      
+      <!-- Left Column: Location, Headline, Search Capsule & Curved Food Cards -->
+      <div class="qummy-left-col">
+        
+        <!-- Location Pill Tag -->
+        <button type="button" class="qummy-loc-tag" id="qummyHeroLocTag" title="Click to change delivery location">
+          <span class="qummy-loc-pin">📍</span>
+          <span class="qummy-loc-text" id="qummyHeroLocText">Indiranagar, Bengaluru</span>
+          <span class="qummy-loc-arrow">▾</span>
+        </button>
+
+        <!-- Display Headline -->
+        <h1 class="qummy-hero-headline">
+          Discover wholesome meals <br>that deliver near you.
+        </h1>
+
+        <!-- Floating Search Bar Capsule -->
+        <form class="qummy-search-capsule" id="heroDishSearchForm" action="menu.html" method="GET">
+          <div class="qummy-search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input 
+            type="text" 
+            name="search" 
+            id="heroDishSearchInput" 
+            class="qummy-search-input" 
+            placeholder="what would you like to eat?" 
+            autocomplete="off" 
+            aria-label="Search for wholesome food"
+          />
+          <button type="submit" class="qummy-search-btn">Find</button>
+        </form>
+
+        <!-- Carousel Navigation Controls -->
+        <div class="qummy-carousel-header">
+          <div class="qummy-carousel-nav">
+            <button type="button" class="qummy-nav-btn prev" id="btnHeroPrev" aria-label="Previous dishes">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button type="button" class="qummy-nav-btn next" id="btnHeroNext" aria-label="Next dishes">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Asymmetrical Mini Dish Cards Carousel -->
+        <div class="qummy-cards-track" id="qummyCardsTrack">
+          <!-- Card 1: Standard Ghar-Jaisa Thali -->
+          <a href="menu.html?category=dailyspecial" class="qummy-food-card" title="Standard Ghar-Jaisa Thali">
+            <div class="qummy-card-media">
+              <img src="images/food/photo-1546833999-b9f581a1996d.webp" alt="Ghar-Jaisa Thali" loading="eager">
+            </div>
+            <div class="qummy-card-meta">
+              <span class="qummy-card-name">Ghar Ka Thali</span>
+              <span class="qummy-card-sub">₹120 • Homely</span>
+            </div>
+          </a>
+
+          <!-- Card 2: Paneer Butter Masala Combo -->
+          <a href="menu.html?category=northindian" class="qummy-food-card" title="Paneer Butter Masala Combo">
+            <div class="qummy-card-media">
+              <img src="images/food/photo-1631452180519-c014fe946bc7.webp" alt="Paneer Butter Masala" loading="eager">
+            </div>
+            <div class="qummy-card-meta">
+              <span class="qummy-card-name">Paneer Masala</span>
+              <span class="qummy-card-sub">₹199 • Bestseller</span>
+            </div>
+          </a>
+
+          <!-- Card 3: Dum Handi Biryani Bowl -->
+          <a href="menu.html?category=dailyspecial" class="qummy-food-card" title="Subz Dum Handi Biryani">
+            <div class="qummy-card-media">
+              <img src="images/food/photo-1563379091339-03b21ab4a4f8.webp" alt="Dum Handi Biryani" loading="eager">
+            </div>
+            <div class="qummy-card-meta">
+              <span class="qummy-card-name">Dum Biryani</span>
+              <span class="qummy-card-sub">₹179 • Dum Handi</span>
+            </div>
+          </a>
+
+          <!-- Card 4: Mysore Masala Dosa Feast -->
+          <a href="menu.html?category=southindian" class="qummy-food-card" title="Mysore Masala Dosa Feast">
+            <div class="qummy-card-media">
+              <img src="images/food/photo-1668236543090-82eba5ee5976.webp" alt="Mysore Masala Dosa" loading="eager">
+            </div>
+            <div class="qummy-card-meta">
+              <span class="qummy-card-name">Masala Dosa</span>
+              <span class="qummy-card-sub">₹149 • South Indian</span>
+            </div>
+          </a>
+
+          <!-- Card 5: Amritsari Chole / Pav Bhaji Platter -->
+          <a href="menu.html?category=northindian" class="qummy-food-card" title="Pav Bhaji & Chole Platter">
+            <div class="qummy-card-media">
+              <img src="images/food/photo-1626132647523-66f5bf380027.webp" alt="Pav Bhaji Platter" loading="eager">
+            </div>
+            <div class="qummy-card-meta">
+              <span class="qummy-card-name">Pav Bhaji Feast</span>
+              <span class="qummy-card-sub">₹179 • North Classic</span>
+            </div>
+          </a>
+
+          <!-- Card 6: Sprouts & Protein Salad Bowl -->
+          <a href="menu.html?category=healthy" class="qummy-food-card" title="Sprouts & Protein Salad Bowl">
+            <div class="qummy-card-media">
+              <img src="images/food/photo-1512621776951-a57141f2eefd.webp" alt="Protein Salad Bowl" loading="eager">
+            </div>
+            <div class="qummy-card-meta">
+              <span class="qummy-card-name">Protein Salad</span>
+              <span class="qummy-card-sub">₹139 • Fitness Bowl</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Hero Platter Showcase, Floating Accents & Callout -->
+      <div class="qummy-right-col">
+        <div class="qummy-platter-composition">
+          
+          <!-- Geometric Accents -->
+          <div class="qummy-geo-shape qummy-geo-green-arc" aria-hidden="true">
+            <svg width="68" height="68" viewBox="0 0 60 60" fill="none">
+              <path d="M50 50 A40 40 0 0 0 10 10" stroke="#2D5032" stroke-width="14" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <div class="qummy-geo-shape qummy-geo-green-ring" aria-hidden="true">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+              <circle cx="30" cy="30" r="21" stroke="#2D5032" stroke-width="12"/>
+            </svg>
+          </div>
+
+          <div class="qummy-geo-shape qummy-geo-orange-arc" aria-hidden="true">
+            <svg width="78" height="78" viewBox="0 0 70 70" fill="none">
+              <path d="M60 10 A45 45 0 0 1 15 55" stroke="#FF5A1F" stroke-width="16" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- Hero Food Showcase: Designer Dish Swiper -->
+          <div class="qummy-platter-wrapper">
+            
+            <!-- Circular Dish Platter Swiper -->
+            <div class="qummy-dish-round-platter" id="heroDishSwiper" aria-label="Featured Dishes Swiper" role="region">
+              
+              <!-- Swiper Slides Track -->
+              <div class="dish-swiper-track" id="dishSwiperTrack">
+                
+                <!-- Slide 1: Executive Deluxe Thali -->
+                <div class="dish-swiper-slide active" data-index="0" data-badge-icon="🌿" data-badge-text="Executive Deluxe Thali • ₹180">
+                  <img src="images/hero-platter-thali.webp" alt="Executive Deluxe Thali" class="qummy-platter-img" loading="eager" />
+                </div>
+
+                <!-- Slide 2: Royal Indian Feast -->
+                <div class="dish-swiper-slide" data-index="1" data-badge-icon="👑" data-badge-text="Royal Indian Feast • ₹220">
+                  <img src="images/hero-dish-royal-thali.webp" alt="Royal Indian Feast" class="qummy-platter-img" loading="lazy" />
+                </div>
+
+                <!-- Slide 3: Paneer Makhani Handi -->
+                <div class="dish-swiper-slide" data-index="2" data-badge-icon="🧀" data-badge-text="Paneer Butter Masala • ₹199">
+                  <img src="images/hero-dish-paneer.webp" alt="Paneer Butter Masala Handi" class="qummy-platter-img" loading="lazy" />
+                </div>
+
+                <!-- Slide 4: Subz Dum Biryani -->
+                <div class="dish-swiper-slide" data-index="3" data-badge-icon="🍚" data-badge-text="Subz Dum Biryani • ₹179">
+                  <img src="images/hero-dish-biryani.webp" alt="Subz Dum Handi Biryani" class="qummy-platter-img" loading="lazy" />
+                </div>
+
+                <!-- Slide 5: Mysore Masala Dosa -->
+                <div class="dish-swiper-slide" data-index="4" data-badge-icon="🥞" data-badge-text="Mysore Masala Dosa • ₹149">
+                  <img src="images/hero-dish-dosa.webp" alt="Mysore Masala Dosa Feast" class="qummy-platter-img" loading="lazy" />
+                </div>
+
+              </div>
+
+              <!-- Swiper Pagination Indicators (Pill Dots) -->
+              <div class="swiper-pagination-dots" id="dishSwiperDots">
+                <button type="button" class="swiper-dot active" data-slide="0" aria-label="Slide 1"></button>
+                <button type="button" class="swiper-dot" data-slide="1" aria-label="Slide 2"></button>
+                <button type="button" class="swiper-dot" data-slide="2" aria-label="Slide 3"></button>
+                <button type="button" class="swiper-dot" data-slide="3" aria-label="Slide 4"></button>
+                <button type="button" class="swiper-dot" data-slide="4" aria-label="Slide 5"></button>
+              </div>
+
+            </div>
+
+            <!-- Dynamic Floating Freshness & Dish Badge -->
+            <div class="qummy-platter-badge" id="heroPlatterBadge">
+              <span class="qummy-badge-icon" id="heroBadgeIcon">🌿</span>
+              <span class="qummy-badge-text" id="heroBadgeText">Executive Deluxe Thali • ₹180</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Description & Order Now Callout below Platter -->
+        <div class="qummy-callout-box">
+          <p class="qummy-callout-text">
+            Freshly prepared homestyle meals cooked by verified home-chefs and cloud kitchens. Delivered hot and hygienic to your doorstep with zero delivery fees.
+          </p>
+          <a href="menu.html" class="qummy-order-now-link">
+            <span>ORDER NOW</span>
+            <span class="qummy-arrow-icon">→</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Featured Live Kitchen Banner: Today's Special Lunch Thali -->
+  <section class="today-special-banner-section">
+    <div class="container">
+      <div class="hero-visual" id="today-special">
+        <div class="today-showcase-card today-showcase-horizontal">
+          <div class="showcase-header">
+            <div>
+              <span class="showcase-tag">🔥 Live Kitchen Menu</span>
+              <h3 class="showcase-title" style="margin-top: 6px;">Today's Lunch Thali</h3>
+              <p class="showcase-subtitle">Freshly cooked between 11:30 AM - 12:15 PM</p>
+            </div>
+            <div class="cutoff-timer" id="orderCutoffTimer">
+              ⏳ Order closes in 45m
+            </div>
+          </div>
+
+          <!-- Dishes in Today's Special -->
+          <ul class="today-dish-list" id="todayDishList">
+            <!-- Injected via JavaScript -->
+          </ul>
+
+          <div class="showcase-footer">
+            <div class="showcase-price">
+              <span class="label">Single Trial Meal</span>
+              <span class="amount">₹120 <span style="font-size: 0.8rem; font-weight: 500; color: var(--muted);">/ thali</span></span>
+            </div>
+            <button class="btn-primary" id="btnOrderTodaySpecial">
+              <span>Order Now</span>
+              <span>+</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tiffin Subscription Plans Section -->
+  <section class="plans-section" id="plans">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Daily Meal Subscriptions</span>
+        <h2 class="section-title">Wholesome Daily Tiffin Plans</h2>
+        <p class="section-subtitle">Choose a plan that fits your lifestyle. Switch dishes or pause anytime without penalty.</p>
+      </div>
+
+      <!-- Plan Controls (Duration Selector & Veg/Non-Veg Filter) -->
+      <div class="plan-controls">
+        <div class="duration-tabs" id="durationTabs">
+          <button class="duration-tab" data-duration="single">Single Trial</button>
+          <button class="duration-tab active" data-duration="weekly">
+            7 Days (Weekly)
+            <span class="discount-pill">Popular</span>
+          </button>
+          <button class="duration-tab" data-duration="monthly">
+            30 Days (Monthly)
+            <span class="discount-pill">Save 25%</span>
+          </button>
+        </div>
+
+        <div class="plan-filters" id="planDietFilters">
+          <button class="filter-btn active" data-filter="all">All Plans</button>
+          <button class="filter-btn" data-filter="veg" title="Standard Ghar-Jaisa, Executive Deluxe, South Indian, Satvik Thali">Pure Veg 🟢</button>
+          <button class="filter-btn" data-filter="nonveg" title="Tariwala Chicken, Butter Chicken, Mutton Rogan Josh, Egg Curry">Non-Veg 🔴</button>
+          <button class="filter-btn" data-filter="fitness" title="Grilled Chicken Quinoa, Paneer Soya, 6 Egg Whites, Tofu Avocado">Fitness / High Protein 🥗</button>
+        </div>
+      </div>
+
+      <!-- Tiffin Plans Cards Grid -->
+      <div class="plans-grid" id="plansGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- A La Carte & Instant Food Delivery Section -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Instant Delivery</span>
+        <h2 class="section-title">A La Carte Menu & Quick Bites</h2>
+        <p class="section-subtitle">Not ready for a subscription? Order fresh single meals, breakfast, and comfort food delivered in 30 minutes.</p>
+      </div>
+
+      <!-- Search & Category Filters -->
+      <div class="menu-search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="menu-search-input" id="menuSearchInput" placeholder="Search dishes (e.g., Rajma Chawal, Paneer, Paratha, Biryani)...">
+      </div>
+
+      <div class="menu-category-tabs" id="categoryTabs">
+        <button class="category-tab active" data-category="all">🍽️ All Items</button>
+        <button class="category-tab" data-category="dailyspecial">🔥 Daily Specials</button>
+        <button class="category-tab" data-category="northindian">🍛 North Indian</button>
+        <button class="category-tab" data-category="southindian">🥞 South Indian</button>
+        <button class="category-tab" data-category="nonveg">🍗 Non-Veg Delights</button>
+        <button class="category-tab" data-category="breakfast">☕ Breakfast & Parathas</button>
+        <button class="category-tab" data-category="healthy">🥗 Healthy Bowls</button>
+        <button class="category-tab" data-category="dessert">🍯 Desserts & Drinks</button>
+      </div>
+
+      <!-- Food Items Grid -->
+      <div class="menu-items-grid" id="menuItemsGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Kitchen Video Showcase -->
+  <section class="kitchen-video-section" id="live-kitchen">
+    <div class="container">
+      <div class="kitchen-video-banner">
+        <div class="kitchen-video-wrapper">
+          <video class="feature-video" autoplay muted loop playsinline poster="videos/kitchen-live-poster.webp">
+            <source src="videos/kitchen-live.mp4" type="video/mp4">
+          </video>
+          <div class="video-glass-badge live-indicator">
+            <span class="live-pulse"></span> LIVE KITCHEN
+          </div>
+          <div class="video-glass-badge chef-tag">
+            🔥 Fresh Cooking in Progress
+          </div>
+        </div>
+
+        <div class="kitchen-video-content">
+          <span class="section-tag">Pure Homestyle Standard</span>
+          <h2>Fresh Ingredients Sizzle Every Single Day</h2>
+          <p>No frozen bases, zero artificial additives, and never reheated. Our verified home-chefs begin cooking only 45 minutes before dispatch, ensuring wholesome nutrition and unmatched aroma in every bite.</p>
+
+          <div class="kitchen-perks-grid">
+            <div class="kitchen-perk">
+              <span class="perk-icon">🥘</span>
+              <div>
+                <strong>Pure Desi Ghee & Fresh Cold-Pressed Oils</strong>
+                <p>Authentic homestyle tempering without industrial palm oils.</p>
+              </div>
+            </div>
+            <div class="kitchen-perk">
+              <span class="perk-icon">🥦</span>
+              <div>
+                <strong>Farm-Fresh Morning Vegetables</strong>
+                <p>Cleaned and prepared fresh every morning before 6:00 AM.</p>
+              </div>
+            </div>
+            <div class="kitchen-perk">
+              <span class="perk-icon">🌡️</span>
+              <div>
+                <strong>Insulated Thermal Multi-Tier Packaging</strong>
+                <p>Guaranteed hot and fresh delivery right to your desk.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kitchen-cta-wrap">
+            <a href="plans.html" class="btn-primary"><span>Explore Daily Plans</span> <span>→</span></a>
+            <a href="menu.html" class="btn-secondary"><span>Order Instant Food</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Simple & Hassle-Free</span>
+        <h2 class="section-title">How Stackly Works</h2>
+        <p class="section-subtitle">From our hygienic kitchens to your dining table in 4 effortless steps.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon">🍱</div>
+          <h3 class="step-title">Choose Your Meal Plan</h3>
+          <p class="step-desc">Pick a 1-day trial, weekly, or monthly plan that matches your diet (Veg, Non-Veg, or Fitness).</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon">⏰</div>
+          <h3 class="step-title">Select Delivery Slot</h3>
+          <p class="step-desc">Set your preferred breakfast, lunch, or dinner timing. Easily change timings day-to-day.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon">👨‍🍳</div>
+          <h3 class="step-title">Cooked Fresh & Dispatched</h3>
+          <p class="step-desc">Prepared 45 minutes before dispatch using cold-pressed oils, fresh veggies, and pure ghee.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-icon">✨</div>
+          <h3 class="step-title">Enjoy & Pause Anytime</h3>
+          <p class="step-desc">Going out for the weekend? Tap Pause in your dashboard and never lose a single paid meal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Locations & Cloud Kitchen Hubs Section -->
+  <section class="locations-section" id="locations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">📍 Hyperlocal Kitchens</span>
+        <h2 class="section-title">Our Service Locations & Kitchen Hubs</h2>
+        <p class="section-subtitle">Delivering authentic ghar-ka-khana hot within 30 minutes across 5 metro cities and 40+ delivery pockets.</p>
+      </div>
+
+      <!-- Interactive Pincode & Locality Checker Box -->
+      <div class="loc-checker-box">
+        <div class="loc-checker-title">
+          <span>🛵 Check Delivery Availability at Your Doorstep</span>
+        </div>
+        <p class="loc-checker-desc">Enter your area name or 6-digit pincode to see live kitchen dispatch status and estimated arrival times.</p>
+        <form class="loc-checker-form" id="homeLocCheckerForm" onsubmit="return false;">
+          <input type="text" class="loc-checker-input" id="pincodeCheckInput" placeholder="Enter area or pincode (e.g. Indiranagar, 560038, Andheri, 400053, Cyber City)...">
+          <button type="button" class="btn-primary" id="btnCheckPincode">
+            <span>Check Availability</span>
+            <span>→</span>
+          </button>
+        </form>
+        <div class="loc-checker-result" id="pincodeResultBox"></div>
+      </div>
+
+      <!-- City Hubs Grid -->
+      <div class="city-hubs-grid">
+        <!-- Bengaluru -->
+        <div class="city-hub-card">
+          <div class="city-hub-card-header">
+            <div class="city-hub-icon">🏛️</div>
+            <span class="city-hub-time">⚡ 20-30 mins</span>
+          </div>
+          <h3 class="city-hub-title">Bengaluru (HQ)</h3>
+          <p class="city-hub-central">📍 Central Hub: 100ft Road, Indiranagar</p>
+          <div class="city-hub-zones-label">Active Delivery Zones</div>
+          <div class="city-hub-zones">
+            <span class="zone-tag" data-loc="Indiranagar, Bengaluru">Indiranagar</span>
+            <span class="zone-tag" data-loc="Koramangala, Bengaluru">Koramangala</span>
+            <span class="zone-tag" data-loc="HSR Layout, Bengaluru">HSR Layout</span>
+            <span class="zone-tag" data-loc="Whitefield, Bengaluru">Whitefield</span>
+            <span class="zone-tag" data-loc="Electronic City, Bengaluru">Electronic City</span>
+            <span class="zone-tag" data-loc="Bellandur, Bengaluru">Bellandur</span>
+            <span class="zone-tag" data-loc="BTM Layout, Bengaluru">BTM Layout</span>
+            <span class="zone-tag" data-loc="Jayanagar, Bengaluru">Jayanagar</span>
+          </div>
+          <div class="city-hub-footer">
+            <span class="city-hub-stat">⭐ <strong>4.9</strong> (4.2k active subscribers)</span>
+            <button type="button" class="city-hub-btn" data-city="Bengaluru">Change Area →</button>
+          </div>
+        </div>
+
+        <!-- Mumbai -->
+        <div class="city-hub-card">
+          <div class="city-hub-card-header">
+            <div class="city-hub-icon">🌊</div>
+            <span class="city-hub-time">⚡ 25-35 mins</span>
+          </div>
+          <h3 class="city-hub-title">Mumbai</h3>
+          <p class="city-hub-central">📍 Central Hub: Link Road, Andheri West</p>
+          <div class="city-hub-zones-label">Active Delivery Zones</div>
+          <div class="city-hub-zones">
+            <span class="zone-tag" data-loc="Andheri West, Mumbai">Andheri West</span>
+            <span class="zone-tag" data-loc="Bandra West, Mumbai">Bandra</span>
+            <span class="zone-tag" data-loc="Powai, Mumbai">Powai</span>
+            <span class="zone-tag" data-loc="Lower Parel, Mumbai">Lower Parel</span>
+            <span class="zone-tag" data-loc="BKC, Mumbai">BKC</span>
+            <span class="zone-tag" data-loc="Malad West, Mumbai">Malad</span>
+            <span class="zone-tag" data-loc="Thane West, Mumbai">Thane</span>
+          </div>
+          <div class="city-hub-footer">
+            <span class="city-hub-stat">⭐ <strong>4.8</strong> (3.1k active subscribers)</span>
+            <button type="button" class="city-hub-btn" data-city="Mumbai">Change Area →</button>
+          </div>
+        </div>
+
+        <!-- Delhi NCR -->
+        <div class="city-hub-card">
+          <div class="city-hub-card-header">
+            <div class="city-hub-icon">🏢</div>
+            <span class="city-hub-time">⚡ 20-30 mins</span>
+          </div>
+          <h3 class="city-hub-title">Delhi NCR</h3>
+          <p class="city-hub-central">📍 Central Hub: DLF Cyber Hub, Gurugram</p>
+          <div class="city-hub-zones-label">Active Delivery Zones</div>
+          <div class="city-hub-zones">
+            <span class="zone-tag" data-loc="Cyber City, Gurugram, Delhi NCR">Cyber City</span>
+            <span class="zone-tag" data-loc="Sector 29, Gurugram, Delhi NCR">Sector 29</span>
+            <span class="zone-tag" data-loc="DLF Phase 5, Gurugram, Delhi NCR">DLF Phase 5</span>
+            <span class="zone-tag" data-loc="Noida Sector 62, Delhi NCR">Noida Sec 62</span>
+            <span class="zone-tag" data-loc="Connaught Place, Delhi NCR">Connaught Place</span>
+            <span class="zone-tag" data-loc="South Extension, Delhi NCR">South Ex</span>
+          </div>
+          <div class="city-hub-footer">
+            <span class="city-hub-stat">⭐ <strong>4.9</strong> (2.8k active subscribers)</span>
+            <button type="button" class="city-hub-btn" data-city="Delhi NCR">Change Area →</button>
+          </div>
+        </div>
+
+        <!-- Hyderabad -->
+        <div class="city-hub-card">
+          <div class="city-hub-card-header">
+            <div class="city-hub-icon">🕌</div>
+            <span class="city-hub-time">⚡ 20-30 mins</span>
+          </div>
+          <h3 class="city-hub-title">Hyderabad</h3>
+          <p class="city-hub-central">📍 Central Hub: Cyber Towers, Hitec City</p>
+          <div class="city-hub-zones-label">Active Delivery Zones</div>
+          <div class="city-hub-zones">
+            <span class="zone-tag" data-loc="Hitec City, Hyderabad">Hitec City</span>
+            <span class="zone-tag" data-loc="Gachibowli, Hyderabad">Gachibowli</span>
+            <span class="zone-tag" data-loc="Madhapur, Hyderabad">Madhapur</span>
+            <span class="zone-tag" data-loc="Jubilee Hills, Hyderabad">Jubilee Hills</span>
+            <span class="zone-tag" data-loc="Kondapur, Hyderabad">Kondapur</span>
+          </div>
+          <div class="city-hub-footer">
+            <span class="city-hub-stat">⭐ <strong>4.9</strong> (2.4k active subscribers)</span>
+            <button type="button" class="city-hub-btn" data-city="Hyderabad">Change Area →</button>
+          </div>
+        </div>
+
+        <!-- Pune -->
+        <div class="city-hub-card">
+          <div class="city-hub-card-header">
+            <div class="city-hub-icon">🏰</div>
+            <span class="city-hub-time">⚡ 25-35 mins</span>
+          </div>
+          <h3 class="city-hub-title">Pune</h3>
+          <p class="city-hub-central">📍 Central Hub: Phase 1 Tech Park, Hinjawadi</p>
+          <div class="city-hub-zones-label">Active Delivery Zones</div>
+          <div class="city-hub-zones">
+            <span class="zone-tag" data-loc="Hinjawadi, Pune">Hinjawadi</span>
+            <span class="zone-tag" data-loc="Kothrud, Pune">Kothrud</span>
+            <span class="zone-tag" data-loc="Viman Nagar, Pune">Viman Nagar</span>
+            <span class="zone-tag" data-loc="Baner, Pune">Baner</span>
+            <span class="zone-tag" data-loc="Wakad, Pune">Wakad</span>
+          </div>
+          <div class="city-hub-footer">
+            <span class="city-hub-stat">⭐ <strong>4.8</strong> (1.9k active subscribers)</span>
+            <button type="button" class="city-hub-btn" data-city="Pune">Change Area →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials & Reviews -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Happy Foodies</span>
+        <h2 class="section-title">Loved by Students & Working Pros</h2>
+        <p class="section-subtitle">Over 10,000+ monthly subscribers in Bengaluru, Mumbai, and Delhi NCR.</p>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Frequently Asked Questions -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about our daily meals and delivery policies.</p>
+      </div>
+
+      <div class="faq-list" id="faqList">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="images/logo.webp" alt="Stackly">
+          </div>
+          <p>
+            Bringing authentic, homely ghar-ka-khana to busy professionals and students. Cooked fresh with pure love, zero soda, and uncompromised hygiene.
+          </p>
+          <div style="margin-top: 16px; color: #FFF; font-weight: 700; font-size: 0.9rem;">
+            📞 Support: +91 98765 43210 <br>
+            ✉️ care@stackly.in
+          </div>
+
+          <!-- Social Media Icons linking to 404 page -->
+          <div class="footer-social-links" aria-label="Social media links">
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Tiffin Plans</h4>
+          <ul class="footer-links">
+            <li><a href="plans.html">Standard Homely Thali</a></li>
+            <li><a href="plans.html">Deluxe Executive Thali</a></li>
+            <li><a href="plans.html">Fitness High-Protein Meal</a></li>
+            <li><a href="plans.html">Non-Veg Special Thali</a></li>
+            <li><a href="about.html">Custom Corporate Catering</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="menu.html">A La Carte Menu</a></li>
+            <li><a href="plans.html">Tiffin Subscriptions</a></li>
+            <li><a href="about.html">About & Hygiene</a></li>
+            <li><a href="about.html#faq">FAQs & Policies</a></li>
+            <li><a href="track.html">Track Live Order</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Delivery Cities</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;">Active in major tech hubs & residential pockets:</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" class="footer-city-tag" data-city="Bengaluru">Bengaluru</button>
+            <button type="button" class="footer-city-tag" data-city="Mumbai">Mumbai</button>
+            <button type="button" class="footer-city-tag" data-city="Pune">Pune</button>
+            <button type="button" class="footer-city-tag" data-city="Hyderabad">Hyderabad</button>
+            <button type="button" class="footer-city-tag" data-city="Delhi NCR">Gurugram / NCR</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Stackly Technologies Pvt. Ltd. All rights reserved.</p>
+        <p>Built with pure HTML, CSS, and JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODAL 1: Shopping Cart Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="cartModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">Your Food Cart</h3>
+        <button class="btn-close-modal" id="btnCloseCart">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="cartEmptyState" style="text-align: center; padding: 40px 20px; display: none;">
+          <div style="font-size: 3.5rem; margin-bottom: 12px;">🧺</div>
+          <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--dark); margin-bottom: 6px;">Your cart is empty!</h4>
+          <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 20px;">Explore delicious tiffin subscriptions or single meals.</p>
+          <button class="btn-primary" id="btnCartExploreMenu">Browse Menu</button>
+        </div>
+
+        <div id="cartContentWrapper">
+          <div class="cart-items-list" id="cartItemsList">
+            <!-- Rendered by JavaScript -->
+          </div>
+
+          <!-- Coupon Box -->
+          <div class="coupon-box">
+            <input type="text" class="coupon-input" id="couponInput" placeholder="Enter coupon (e.g. FIRSTTIFFIN)">
+            <button class="btn-apply-coupon" id="btnApplyCoupon">Apply</button>
+          </div>
+          <div id="couponMessage" style="font-size: 0.8rem; margin-top: 4px; font-weight: 700;"></div>
+
+          <!-- Bill Summary -->
+          <div class="cart-bill-box" style="margin-top: 18px;">
+            <div class="bill-line">
+              <span>Item Total</span>
+              <span id="billSubtotal">₹0</span>
+            </div>
+            <div class="bill-line">
+              <span>Delivery Partner Fee</span>
+              <span id="billDelivery">₹30</span>
+            </div>
+            <div class="bill-line">
+              <span>Govt. Taxes & Packaging (5%)</span>
+              <span id="billTax">₹0</span>
+            </div>
+            <div class="bill-line" id="billDiscountRow" style="display: none; color: var(--secondary);">
+              <span>Coupon Discount</span>
+              <span id="billDiscount">-₹0</span>
+            </div>
+            <div class="bill-line total">
+              <span>Grand Total</span>
+              <span id="billTotal" style="color: var(--primary);">₹0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" id="cartFooter">
+        <div>
+          <span style="font-size: 0.8rem; color: var(--muted); display: block;">Total Payable</span>
+          <span style="font-size: 1.4rem; font-weight: 800; color: var(--dark);" id="cartFooterTotal">₹0</span>
+        </div>
+        <button class="btn-primary" id="btnProceedCheckout">
+          <span>Proceed to Checkout</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: Checkout & Delivery Details Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">Complete Your Order</h3>
+        <button class="btn-close-modal" id="btnCloseCheckout">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" class="form-input" id="custName" required placeholder="e.g. Rahul Verma">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input type="tel" class="form-input" id="custPhone" required placeholder="e.g. 9876543210" maxlength="10">
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <label class="form-label">Delivery Address *</label>
+              <button type="button" class="btn-change-order-loc" style="background: none; border: none; color: var(--primary); font-size: 0.78rem; font-weight: 700; cursor: pointer; text-decoration: underline;">Change Area</button>
+            </div>
+            <textarea class="form-textarea" id="custAddress" rows="2" required placeholder="Flat/House no., Apartment name, Street, Landmark..."></textarea>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+              <span>📍 Delivering to:</span>
+              <strong class="order-delivery-loc-name" style="color: var(--dark);">Indiranagar, Bengaluru</strong>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Delivery Slot *</label>
+            <select class="form-select" id="custSlot">
+              <option value="lunch">Lunch (12:30 PM - 2:00 PM)</option>
+              <option value="dinner">Dinner (7:30 PM - 9:30 PM)</option>
+              <option value="breakfast">Breakfast (7:30 AM - 9:00 AM)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Payment Method</label>
+            <div class="payment-options-grid">
+              <div class="payment-option-card selected" data-method="upi">
+                <div style="font-size: 1.2rem;">📱</div>
+                <span>UPI / QR</span>
+              </div>
+              <div class="payment-option-card" data-method="card">
+                <div style="font-size: 1.2rem;">💳</div>
+                <span>Card / NetBanking</span>
+              </div>
+              <div class="payment-option-card" data-method="cod">
+                <div style="font-size: 1.2rem;">💵</div>
+                <span>Cash on Delivery</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btnBackToCart">Back</button>
+        <button class="btn-primary" id="btnConfirmOrder">
+          <span>Place Order</span>
+          <span id="checkoutPayAmount">₹0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 3: Subscription Configurator Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="subModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title" id="subModalTitle">Configure Subscription</h3>
+        <button class="btn-close-modal" id="btnCloseSubModal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="background: var(--primary-light); padding: 14px; border-radius: var(--radius-md); margin-bottom: 20px;">
+          <h4 id="subModalPlanName" style="font-weight: 800; color: var(--primary); margin-bottom: 2px;">Plan Name</h4>
+          <p id="subModalPlanDesc" style="font-size: 0.85rem; color: var(--dark-light);">Description</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Select Meal Time</label>
+          <select class="form-select" id="subMealTiming">
+            <option value="Lunch Only">Lunch Only (12:30 PM - 2:00 PM)</option>
+            <option value="Dinner Only">Dinner Only (7:30 PM - 9:30 PM)</option>
+            <option value="Both Lunch & Dinner">Both Lunch & Dinner (2x meals/day)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Plan Duration</label>
+          <select class="form-select" id="subDurationSelect">
+            <option value="single">Single Trial (1 Day)</option>
+            <option value="weekly" selected>7-Day Weekly Pass</option>
+            <option value="monthly">30-Day Monthly Saver</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Subscription Start Date</label>
+          <input type="date" class="form-input" id="subStartDate">
+        </div>
+
+        <div style="background: var(--bg-page); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-weight: 700;">Total Calculated Price:</span>
+          <span style="font-size: 1.4rem; font-weight: 800; color: var(--primary);" id="subCalculatedPrice">₹0</span>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btnCancelSub">Cancel</button>
+        <button class="btn-primary" id="btnAddSubToCart">Add Subscription to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 4: Live Order Tracker Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="trackerModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">Live Order Tracking</h3>
+        <button class="btn-close-modal" id="btnCloseTracker">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="noActiveOrderMsg" style="text-align: center; padding: 40px 20px; display: none;">
+          <div style="font-size: 3rem; margin-bottom: 10px;">📦</div>
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 6px;">No Active Orders Yet</h4>
+          <p style="font-size: 0.9rem; color: var(--muted);">Place an order to track live delivery and chef updates!</p>
+        </div>
+
+        <div id="activeOrderContent">
+          <div style="background: var(--primary-light); padding: 14px; border-radius: var(--radius-md); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <span style="font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Order ID</span>
+              <div style="font-weight: 800; color: var(--primary); font-size: 1rem;" id="trackOrderId">#STK-98214</div>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Estimated Arrival</span>
+              <div style="font-weight: 800; color: var(--dark); font-size: 1rem;" id="trackEstimatedTime">25 - 30 Mins</div>
+            </div>
+          </div>
+
+          <!-- Step Progression Timeline -->
+          <div class="order-tracker-timeline">
+            <div class="tracker-step completed">
+              <div class="tracker-step-icon">✓</div>
+              <div>
+                <div class="tracker-step-title">Order Confirmed</div>
+                <div class="tracker-step-desc">Your order has been received by our kitchen.</div>
+              </div>
+            </div>
+
+            <div class="tracker-step active" id="stepCooking">
+              <div class="tracker-step-icon">👨‍🍳</div>
+              <div>
+                <div class="tracker-step-title">Simmering in the Kitchen</div>
+                <div class="tracker-step-desc">Freshly prepared with pure ghee and hot phulkas.</div>
+              </div>
+            </div>
+
+            <div class="tracker-step" id="stepDelivery">
+              <div class="tracker-step-icon">🛵</div>
+              <div>
+                <div class="tracker-step-title">Out for Delivery</div>
+                <div class="tracker-step-desc">Packed in insulated thermal dabba with delivery valet.</div>
+              </div>
+            </div>
+
+            <div class="tracker-step" id="stepDelivered">
+              <div class="tracker-step-icon">🏠</div>
+              <div>
+                <div class="tracker-step-title">Delivered & Relished</div>
+                <div class="tracker-step-desc">Enjoy your wholesome home-style meal!</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Valet Details Card -->
+          <div style="border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-page);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="font-size: 2rem;">🛵</div>
+              <div>
+                <div style="font-weight: 800; font-size: 0.95rem; color: var(--dark);">Suresh Kumar</div>
+                <div style="font-size: 0.8rem; color: var(--muted);">Delivery Valet (Vaccinated & Sanitized)</div>
+              </div>
+            </div>
+            <a href="tel:9876543210" style="padding: 8px 14px; background: var(--secondary-light); color: var(--secondary-hover); border-radius: var(--radius-full); font-weight: 700; font-size: 0.85rem; border: 1px solid rgba(16, 185, 129, 0.3);">
+              📞 Call
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-primary" style="width: 100%; text-align: center; justify-content: center;" id="btnDismissTracker">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

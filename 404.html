@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .error-card {
+      text-align: center;
+      max-width: 580px;
+    }
+    .error-number {
+      font-size: clamp(4.5rem, 12vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      background: linear-gradient(135deg, #FF5A1F 0%, #FF8A00 50%, #10B981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 10px 0 14px;
+      filter: drop-shadow(0 8px 20px rgba(255, 90, 31, 0.25));
+    }
+    .error-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 90, 31, 0.16);
+      border: 1px solid rgba(255, 90, 31, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #C23500;
+      padding: 5px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+    .error-card p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #1E293B;
+      font-weight: 600;
+      max-width: 460px;
+      margin: 0 auto;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+    }
+    .error-card h1 {
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      font-weight: 800;
+      color: #0F172A;
+      margin: 12px 0 10px;
+      letter-spacing: -0.03em;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+    .quick-links-pill-group {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .quick-link-pill {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+    }
+    .quick-link-pill:hover {
+      background: #FFF;
+      color: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="auth-shell">
+  <!-- Background Video & Ambient Overlay -->
+  <div class="auth-video-container" aria-hidden="true">
+    <video class="auth-bg-video" autoplay muted loop playsinline poster="videos/404-bg-poster.webp">
+      <source src="videos/404-bg.mp4" type="video/mp4">
+    </video>
+    <div class="auth-video-overlay"></div>
+  </div>
+
+  <main class="auth-page">
+    <section class="auth-card error-card" aria-labelledby="errorTitle">
+      <a href="index.html" class="auth-logo"><img src="images/logo.webp" alt="Stackly"></a>
+      
+      <span class="error-badge">🍱 Oops! Tiffin Box Not Found</span>
+      
+      <div class="error-number">404</div>
+
+      <h1 id="errorTitle">This dish is off the menu!</h1>
+      <p>The page you are looking for might have been eaten, moved, or never existed in our kitchen.</p>
+
+      <div class="error-actions">
+        <a href="index.html" class="btn-primary">
+          <span>← Back to Home</span>
+        </a>
+        <a href="menu.html" class="btn-secondary">
+          <span>Explore Menu</span>
+        </a>
+        <a href="plans.html" class="btn-secondary">
+          <span>Tiffin Plans</span>
+        </a>
+      </div>
+
+      <div class="quick-links-pill-group">
+        <a href="track.html" class="quick-link-pill">🛵 Track Order</a>
+        <a href="about.html" class="quick-link-pill">📖 About Us</a>
+        <a href="cart.html" class="quick-link-pill">🛒 View Cart</a>
+        <a href="login.html" class="quick-link-pill">👤 Login</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

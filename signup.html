@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create an Account | Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-shell">
+  <!-- Background Video & Ambient Overlay -->
+  <div class="auth-video-container" aria-hidden="true">
+    <video class="auth-bg-video" autoplay muted loop playsinline poster="videos/auth-bg-poster.webp">
+      <source src="videos/auth-bg.mp4" type="video/mp4">
+    </video>
+    <div class="auth-video-overlay"></div>
+  </div>
+
+  <main class="auth-page auth-page-wide">
+    <section class="auth-card" aria-labelledby="signupTitle">
+      <a href="index.html" class="auth-logo"><img src="images/logo.webp" alt="Stackly"></a>
+      <div class="auth-heading">
+        <span class="section-tag">Good food starts here</span>
+        <h1 id="signupTitle">Create your account</h1>
+        <p>Save your details and make every meal easier to order.</p>
+      </div>
+      <form id="signupForm" novalidate>
+        <div class="auth-form-grid">
+          <div class="form-group">
+            <label class="form-label" for="signupName">Full name</label>
+            <input class="form-input" id="signupName" name="name" autocomplete="name" required maxlength="80" placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signupEmail">Email address</label>
+            <input class="form-input" id="signupEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signupPhone">10-digit phone number</label>
+            <input class="form-input" id="signupPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" pattern="[0-9]{10}" maxlength="10" minlength="10" required placeholder="9876543210">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signupCity">Delivery city / area</label>
+            <input class="form-input" id="signupCity" name="city" autocomplete="address-level2" required maxlength="100" placeholder="e.g. Indiranagar, Bengaluru">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signupPassword">Password</label>
+            <input class="form-input" id="signupPassword" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signupConfirmPassword">Confirm password</label>
+            <input class="form-input" id="signupConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Enter your password again">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signupDiet">Dietary preference</label>
+            <select class="form-select" id="signupDiet" name="diet" required>
+              <option value="veg">Pure Veg 🟢</option>
+              <option value="nonveg">Non-Veg 🔴</option>
+              <option value="fitness">Fitness Diet 🥗</option>
+            </select>
+          </div>
+        </div>
+        <label class="auth-check auth-terms"><input id="signupTerms" type="checkbox" required> I agree to Stackly’s Terms &amp; Conditions.</label>
+        <p class="form-message" id="signupMessage" role="alert" aria-live="polite"></p>
+        <button class="btn-primary auth-submit" type="submit">Create Account <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="auth-switch">Already have an account? <a href="login.html">Log In</a></p>
+      <a class="auth-home-link" href="index.html">← Back to Stackly</a>
+    </section>
+  </main>
+  <script src="js/auth.js"></script>
+</body>
+</html>

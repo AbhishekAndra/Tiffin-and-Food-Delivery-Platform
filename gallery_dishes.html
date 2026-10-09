@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Food Image Gallery Audit</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 24px; }
+    h1 { margin-bottom: 24px; color: #ff5a1f; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+    .card img { width: 100%; height: 200px; object-fit: cover; background: #334155; }
+    .content { padding: 14px; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 99px; background: rgba(255,90,31,0.2); color: #ff8a00; font-size: 11px; font-weight: bold; margin-bottom: 6px; }
+    h3 { margin: 4px 0 6px; font-size: 16px; color: #fff; }
+    p { margin: 0; font-size: 12px; color: #94a3b8; }
+    .file { font-size: 11px; color: #38bdf8; word-break: break-all; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Stackly Food Image Audit Gallery</h1>
+  <h2>Tiffin Plans (12)</h2>
+  <div class="grid" id="plansGrid"></div>
+  <h2 style="margin-top: 40px;">Menu Items (56)</h2>
+  <div class="grid" id="menuGrid"></div>
+
+  <script src="js/data.js"></script>
+  <script>
+    const pGrid = document.getElementById('plansGrid');
+    TIFFIN_PLANS.forEach(p => {
+      pGrid.innerHTML += `
+        <div class="card">
+          <img src="${p.image}" alt="${p.title}" loading="lazy">
+          <div class="content">
+            <span class="tag">${p.badge || 'Plan'}</span>
+            <h3>${p.title}</h3>
+            <p>${p.subtitle || ''}</p>
+            <div class="file">${p.image}</div>
+          </div>
+        </div>
+      `;
+    });
+
+    const mGrid = document.getElementById('menuGrid');
+    MENU_ITEMS.forEach(m => {
+      mGrid.innerHTML += `
+        <div class="card">
+          <img src="${m.image}" alt="${m.name}" loading="lazy">
+          <div class="content">
+            <span class="tag">${m.category}</span>
+            <h3>${m.name}</h3>
+            <p>${m.description || ''}</p>
+            <div class="file">${m.image}</div>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

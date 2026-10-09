@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Order Tracking | Stackly</title>
+  <meta name="description" content="Track your freshly prepared tiffin or food order in real-time from kitchen dispatch to doorstep.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo-area">
+        <a href="index.html" class="brand-logo">
+          <img src="images/logo.webp" alt="Stackly" class="brand-logo-img">
+        </a>
+
+        <button class="location-picker" id="locationPickerBtn" title="Change delivery location">
+          <span class="loc-icon">📍</span>
+          <span id="currentLocationText">Indiranagar, Bengaluru</span>
+          <span style="font-size: 0.7rem; color: var(--muted);">▼</span>
+        </button>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="plans.html">Tiffin Plans</a></li>
+          <li><a href="menu.html">Food Menu</a></li>
+          <li><a href="track.html" class="active">Track Order</a></li>
+          <li><a href="about.html">About & FAQs</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn-track">Login</a>
+        <a href="track.html" class="btn-track" style="background: var(--secondary); color: #FFF;">
+          <span>🛵</span> Track Order
+        </a>
+
+        <a href="cart.html" class="btn-cart" id="btnOpenCart" aria-label="Shopping Cart">
+          <span>🛒</span>
+          <span>Cart</span>
+          <span class="cart-count-badge" id="cartBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container">
+      <span class="section-tag">Real-Time Updates</span>
+      <h1>Live Order Tracking</h1>
+      <p>Watch your wholesome meal go from hot tawa to your doorstep.</p>
+    </div>
+  </section>
+
+  <!-- Main Tracking Container -->
+  <main class="container">
+    <div class="tracking-card-container">
+      <!-- No Active Order State -->
+      <div id="trackPageNoOrder" style="text-align: center; padding: 40px 10px; display: none;">
+        <div style="font-size: 3.5rem; margin-bottom: 14px;">🛵</div>
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--dark); margin-bottom: 8px;">No Active Deliveries Right Now</h3>
+        <p style="font-size: 0.95rem; color: var(--muted); margin-bottom: 24px;">You haven't placed an order yet. Choose a tiffin plan or single meal to see live tracking in action!</p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="plans.html" class="btn-primary">Explore Daily Tiffins</a>
+          <a href="menu.html" class="btn-secondary">Order Quick Food</a>
+          <button type="button" class="btn-primary" id="btnLaunchDemoTracking" style="background: var(--dark);">⚡ View Live Fleet Simulation Demo</button>
+        </div>
+      </div>
+
+      <!-- Active Order View -->
+      <div id="trackPageActiveContent">
+        <!-- Top Status Bar -->
+        <div style="background: var(--primary-light); padding: 18px 22px; border-radius: var(--radius-md); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <span style="font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Tracking Order</span>
+            <div style="font-weight: 800; color: var(--primary); font-size: 1.25rem;" id="pageTrackOrderId">#STK-98214</div>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Estimated Arrival</span>
+            <div style="font-weight: 800; color: var(--dark); font-size: 1.25rem;">20 - 25 Mins</div>
+          </div>
+        </div>
+
+        <!-- Dual-Camera Live Video Broadcast -->
+        <div class="track-cams-header">
+          <div class="track-live-status-pill">
+            <span class="live-pulse"></span>
+            <span>LIVE BROADCAST • 2 FEEDS ACTIVE</span>
+          </div>
+
+          <div class="track-cams-tabs" id="trackCamTabs">
+            <button type="button" class="track-cam-tab active" data-view="dual">📺 Dual Cam</button>
+            <button type="button" class="track-cam-tab" data-view="cam1">🛵 Cam 1: Transit Route</button>
+            <button type="button" class="track-cam-tab" data-view="cam2">🚪 Cam 2: Doorstep Arrival</button>
+          </div>
+        </div>
+
+        <div class="track-videos-grid" id="trackVideosGrid">
+          <!-- Feed 1: Transit Route (delivery-live.mp4) -->
+          <div class="track-video-card" id="cardCam1">
+            <video autoplay muted loop playsinline poster="videos/delivery-live-poster.webp">
+              <source src="videos/delivery-live.mp4" type="video/mp4">
+            </video>
+            <div class="track-live-overlay">
+              <span class="track-live-badge">
+                <span class="live-pulse"></span> Cam 1: Rider In Transit
+              </span>
+              <span class="track-live-eta">⚡ Speed: 28 km/h</span>
+            </div>
+          </div>
+
+          <!-- Feed 2: Doorstep Arrival (delivery-arrival.mp4) -->
+          <div class="track-video-card" id="cardCam2">
+            <video autoplay muted loop playsinline poster="videos/delivery-arrival-poster.webp">
+              <source src="videos/delivery-arrival.mp4" type="video/mp4">
+            </video>
+            <div class="track-live-overlay">
+              <span class="track-live-badge" style="background: rgba(255, 90, 31, 0.95);">
+                <span class="live-pulse" style="background: #FFF; box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);"></span> Cam 2: Doorstep Arrival
+              </span>
+              <span class="track-live-eta">📍 Last Mile Handover</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telemetry Stats Bar -->
+        <div class="track-telemetry-bar">
+          <div class="telemetry-item">
+            <span class="telemetry-label">Fleet Status</span>
+            <span class="telemetry-val" style="color: var(--secondary);">● On Schedule</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Insulated Dabba Temp</span>
+            <span class="telemetry-val">🔥 68°C Hot</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Distance Remaining</span>
+            <span class="telemetry-val">🛵 1.2 km</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Hygiene Check</span>
+            <span class="telemetry-val" style="color: var(--secondary);">✓ Verified 98.4°F</span>
+          </div>
+        </div>
+
+        <!-- 4-Step Tracker Timeline -->
+        <div class="order-tracker-timeline">
+          <div class="tracker-step completed">
+            <div class="tracker-step-icon">✓</div>
+            <div>
+              <div class="tracker-step-title">Order Confirmed & Payment Received</div>
+              <div class="tracker-step-desc">Your order has reached our certified home kitchen.</div>
+            </div>
+          </div>
+
+          <div class="tracker-step active">
+            <div class="tracker-step-icon">👨‍🍳</div>
+            <div>
+              <div class="tracker-step-title">Simmering in the Kitchen</div>
+              <div class="tracker-step-desc">Homely sabzi cooked with fresh cold-pressed oil and hot phulkas being tossed.</div>
+            </div>
+          </div>
+
+          <div class="tracker-step">
+            <div class="tracker-step-icon">🛵</div>
+            <div>
+              <div class="tracker-step-title">Packed & Out for Delivery</div>
+              <div class="tracker-step-desc">Sealed in an insulated multi-tier stainless steel thermal container.</div>
+            </div>
+          </div>
+
+          <div class="tracker-step">
+            <div class="tracker-step-icon">🏠</div>
+            <div>
+              <div class="tracker-step-title">Delivered to Your Doorstep</div>
+              <div class="tracker-step-desc">Bon appétit! Relish wholesome ghar-ka-khana.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Valet Info Card -->
+        <div style="border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-page); margin: 30px 0; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="font-size: 2.2rem; background: #FFF; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: var(--shadow-sm);">🛵</div>
+            <div>
+              <div style="font-weight: 800; font-size: 1rem; color: var(--dark);">Suresh Kumar</div>
+              <div style="font-size: 0.8rem; color: var(--muted);">Certified Delivery Partner (Masked & Vaccinated)</div>
+            </div>
+          </div>
+          <a href="tel:9876543210" style="padding: 10px 18px; background: var(--secondary-light); color: var(--secondary-hover); border-radius: var(--radius-full); font-weight: 700; font-size: 0.9rem; border: 1px solid rgba(16, 185, 129, 0.3);">
+            📞 Call Partner
+          </a>
+        </div>
+
+        <!-- Order Summary Details -->
+        <div style="background: #FFF; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: 12px; border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">Order Details</h4>
+          
+          <div style="display: grid; gap: 8px; margin-bottom: 16px; font-size: 0.9rem;">
+            <div><strong style="color: var(--dark-light);">Customer:</strong> <span id="pageTrackCustName">--</span></div>
+            <div><strong style="color: var(--dark-light);">Delivery Address:</strong> <span id="pageTrackAddress">--</span></div>
+            <div><strong style="color: var(--dark-light);">Time Slot:</strong> <span id="pageTrackSlot">--</span></div>
+          </div>
+
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; margin-bottom: 8px;">Items Ordered:</div>
+          <div id="pageTrackItemsList">
+            <!-- Injected by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="images/logo.webp" alt="Stackly">
+          </div>
+          <p>Wholesome home-style daily tiffin subscriptions and instant food delivery delivered hot to your doorstep.</p>
+
+          <!-- Social Media Icons linking to 404 page -->
+          <div class="footer-social-links" aria-label="Social media links">
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="plans.html">Tiffin Plans</a></li>
+            <li><a href="menu.html">A La Carte Menu</a></li>
+            <li><a href="track.html">Track Order</a></li>
+            <li><a href="about.html">About & FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support Hotline</h4>
+          <p style="font-size: 0.9rem;">📞 +91 98765 43210</p>
+          <p style="font-size: 0.9rem; margin-top: 6px;">✉️ support@stackly.in</p>
+        </div>
+        <div class="footer-col">
+          <h4>Delivery Cities</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;">Active in major tech hubs & residential pockets:</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" class="footer-city-tag" data-city="Bengaluru">Bengaluru</button>
+            <button type="button" class="footer-city-tag" data-city="Mumbai">Mumbai</button>
+            <button type="button" class="footer-city-tag" data-city="Pune">Pune</button>
+            <button type="button" class="footer-city-tag" data-city="Hyderabad">Hyderabad</button>
+            <button type="button" class="footer-city-tag" data-city="Delhi NCR">Gurugram / NCR</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Stackly Technologies Pvt. Ltd. All rights reserved.</p>
+        <p><a href="index.html">Back to Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

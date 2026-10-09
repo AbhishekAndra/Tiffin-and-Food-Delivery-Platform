@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="account-shell">
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo"><img src="images/logo.webp" alt="Stackly" class="brand-logo-img"></a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="plans.html">Tiffin Plans</a></li>
+          <li><a href="menu.html">Food Menu</a></li>
+          <li><a href="track.html">Track Order</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <div class="nav-user-badge" id="navUserBadge" title="Signed in email">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <span id="navUserEmail">Loading...</span>
+        </div>
+        <a href="cart.html" class="btn-cart">Cart</a>
+        <button type="button" class="btn-outline account-logout" id="logoutButton">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container account-main">
+    <section class="account-welcome">
+      <div class="account-welcome-info">
+        <div class="account-welcome-top">
+          <span class="section-tag">Your Stackly account</span>
+          <span class="account-email-pill" id="dashboardEmailBadge" title="Signed in email">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+            <span id="topUserEmail">Loading...</span>
+          </span>
+        </div>
+        <h1 id="welcomeTitle">Welcome back!</h1>
+        <p>Manage your meals, orders, and delivery details in one place.</p>
+      </div>
+      <a href="menu.html" class="btn-primary">Order a meal <span aria-hidden="true">→</span></a>
+    </section>
+
+    <section class="account-stats" aria-label="Account summary">
+      <article class="account-stat-card"><span>Subscription days left</span><strong id="daysRemaining">0</strong><small id="subscriptionStatNote">No active subscription</small></article>
+      <article class="account-stat-card"><span>Total orders placed</span><strong id="ordersTotal">0</strong><small>Orders on this account</small></article>
+      <article class="account-stat-card"><span>Wallet balance</span><strong id="walletBalance">₹0</strong><small>Stackly wallet</small></article>
+    </section>
+
+    <section class="account-panel subscription-panel">
+      <div class="account-panel-heading">
+        <div><span class="section-tag">Your meal plan</span><h2>Active Tiffin Subscription</h2></div>
+        <span id="subscriptionStatus" class="status-badge status-muted">No active plan</span>
+      </div>
+      <div id="subscriptionDetails" class="subscription-details"></div>
+      <div class="account-actions" id="subscriptionActions">
+        <button type="button" class="btn-outline" id="pauseMealButton" disabled>Pause Meal for Tomorrow</button>
+        <button type="button" class="btn-outline" id="changeAddressButton">Change Delivery Address</button>
+        <a href="plans.html" class="btn-primary" id="browsePlansButton">Browse Plans</a>
+      </div>
+      <p class="inline-feedback" id="subscriptionFeedback" aria-live="polite"></p>
+    </section>
+
+    <section class="account-panel">
+      <div class="account-panel-heading"><div><span class="section-tag">Your activity</span><h2>Recent Orders</h2></div><a href="track.html" class="account-inline-link">Track current order</a></div>
+      <div class="table-scroll">
+        <table class="orders-table">
+          <thead><tr><th>Order ID</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <tbody id="ordersTableBody"></tbody>
+        </table>
+      </div>
+      <p class="empty-account-state" id="ordersEmptyState">Your order history will appear here after your first order.</p>
+    </section>
+
+    <div class="account-lower-grid">
+      <section class="account-panel">
+        <div class="account-panel-heading"><div><span class="section-tag">Quick delivery</span><h2>Saved Addresses</h2></div><button class="text-button" id="addAddressButton" type="button">+ Add address</button></div>
+        <div id="savedAddresses" class="saved-addresses"></div>
+      </section>
+      <section class="account-panel">
+        <div class="account-panel-heading"><div><span class="section-tag">Your details</span><h2>Profile Settings</h2></div></div>
+        <form id="profileForm" class="profile-form">
+          <div class="form-group"><label class="form-label" for="profileName">Full name</label><input class="form-input" id="profileName" required maxlength="80"></div>
+          <div class="form-group"><label class="form-label" for="profileEmail">Email address</label><input class="form-input" id="profileEmail" type="email" required></div>
+          <div class="form-group"><label class="form-label" for="profilePhone">Phone number</label><input class="form-input" id="profilePhone" type="tel" pattern="[0-9]{10}" maxlength="10" required></div>
+          <div class="form-group"><label class="form-label" for="profileCity">Delivery city / area</label><input class="form-input" id="profileCity" required maxlength="100"></div>
+          <div class="form-group"><label class="form-label" for="profileDiet">Dietary preference</label><select class="form-select" id="profileDiet"><option value="veg">Pure Veg 🟢</option><option value="nonveg">Non-Veg 🔴</option><option value="fitness">Fitness Diet 🥗</option></select></div>
+          <p class="form-message" id="profileMessage" role="status" aria-live="polite"></p>
+          <button class="btn-primary" type="submit">Save Profile</button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

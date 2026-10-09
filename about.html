@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us, Hygiene & FAQs | Stackly</title>
+  <meta name="description" content="Learn about Stackly's mission to deliver wholesome, hygienic ghar-ka-khana. Read our FAQs and customer stories.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo-area">
+        <a href="index.html" class="brand-logo">
+          <img src="images/logo.webp" alt="Stackly" class="brand-logo-img">
+        </a>
+
+        <button class="location-picker" id="locationPickerBtn" title="Change delivery location">
+          <span class="loc-icon">📍</span>
+          <span id="currentLocationText">Indiranagar, Bengaluru</span>
+          <span style="font-size: 0.7rem; color: var(--muted);">▼</span>
+        </button>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="plans.html">Tiffin Plans</a></li>
+          <li><a href="menu.html">Food Menu</a></li>
+          <li><a href="track.html">Track Order</a></li>
+          <li><a href="about.html" class="active">About & FAQs</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn-track">Login</a>
+        <a href="track.html" class="btn-track">
+          <span>🛵</span> Track Order
+        </a>
+
+        <a href="cart.html" class="btn-cart" id="btnOpenCart" aria-label="Shopping Cart">
+          <span>🛒</span>
+          <span>Cart</span>
+          <span class="cart-count-badge" id="cartBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container">
+      <span class="section-tag">Our Story & Standards</span>
+      <h1>Clean Ingredients. Pure Homely Taste.</h1>
+      <p>We started Stackly with a simple mission: ensure no student or working professional has to sacrifice their health to commercial restaurant food.</p>
+    </div>
+  </section>
+
+  <!-- Kitchen Story Video Showcase -->
+  <section class="container" style="padding-top: 50px;">
+    <div class="about-video-showcase">
+      <div class="about-video-card">
+        <video class="feature-video" autoplay muted loop playsinline poster="videos/kitchen-story-poster.webp">
+          <source src="videos/kitchen-story.mp4" type="video/mp4">
+        </video>
+        <div class="video-glass-badge live-indicator">
+          <span class="live-pulse"></span> CERTIFIED CHEFS
+        </div>
+        <div class="video-glass-badge chef-tag">
+          🌿 100% Homestyle Hygiene
+        </div>
+      </div>
+      <div class="about-stats-stack">
+        <div class="about-glass-stat">
+          <h3>5,000+</h3>
+          <p>Wholesome daily meals delivered hot across student hubs and tech parks.</p>
+        </div>
+        <div class="about-glass-stat">
+          <h3>FSSAI ★★★★★</h3>
+          <p>Certified home kitchens following strict multi-tier hygiene protocols.</p>
+        </div>
+        <div class="about-glass-stat">
+          <h3>0% Reused Oil</h3>
+          <p>Fresh cold-pressed sunflower &amp; groundnut oils, zero heavy commercial trans-fats.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story & Hygiene Section -->
+  <section class="how-it-works-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our 4 Pillars</span>
+        <h2 class="section-title">Cooked with the Same Care as at Home</h2>
+        <p class="section-subtitle">Here is what goes into every single meal box delivered by Stackly.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-icon">🌾</div>
+          <h3 class="step-title">100% Shuddh Chakki Atta</h3>
+          <p class="step-desc">Zero maida adulteration. Soft, fluffy rotis kneaded fresh with whole wheat and served hot with desi ghee.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon">🫒</div>
+          <h3 class="step-title">Heart-Healthy Cooking Oils</h3>
+          <p class="step-desc">Never reused. We prepare light gravies using expeller pressed sunflower and groundnut oil in strictly controlled quantities.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon">🥦</div>
+          <h3 class="step-title">Farm-Fresh Vegetables</h3>
+          <p class="step-desc">Sourced every morning at 5:00 AM from local mandis. Thoroughly washed in ozone-purified water.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon">🚫</div>
+          <h3 class="step-title">No Soda or Artificial Colors</h3>
+          <p class="step-desc">No tasting salts, no MSG, no artificial food colorings. 100% gentle on your digestion everyday.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Subscriber Testimonials</span>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Read unfiltered feedback from our long-term daily meal subscribers.</p>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Help Center</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about pausing, billing, timings, and dietary preferences.</p>
+      </div>
+
+      <div class="faq-list" id="faqList">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Locations Section -->
+  <section class="container" style="padding: 60px 20px;">
+    <!-- Central Kitchen Hubs & Operating Locations Card -->
+    <div class="kitchen-locations-card">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 24px;">
+        <span class="section-tag">📍 Verified FSSAI Certified Kitchens</span>
+        <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--dark); margin: 8px 0 6px;">Our Central Kitchen Hubs & Locations</h3>
+        <p style="color: var(--muted); font-size: 0.92rem;">Hygienic commercial kitchens equipped with steam cooking equipment, RO purification, and thermal delivery packaging dispatch counters.</p>
+      </div>
+
+      <div class="kitchen-locations-grid">
+        <div class="kitchen-location-item">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🏛️</div>
+          <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: 4px;">Bengaluru Central Kitchen (HQ)</h4>
+          <p style="font-size: 0.85rem; color: #475569; margin-bottom: 10px;">#482, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038</p>
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--secondary);">✓ Serving 9 delivery zones • 20-30 min dispatch</div>
+        </div>
+
+        <div class="kitchen-location-item">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🌊</div>
+          <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: 4px;">Mumbai West Kitchen Hub</h4>
+          <p style="font-size: 0.85rem; color: #475569; margin-bottom: 10px;">Unit 12, Lotus Park, New Link Road, Andheri West, Mumbai, Maharashtra 400053</p>
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--secondary);">✓ Serving 7 delivery zones • 25-35 min dispatch</div>
+        </div>
+
+        <div class="kitchen-location-item">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🏢</div>
+          <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: 4px;">Delhi NCR Hub (Cyber Hub)</h4>
+          <p style="font-size: 0.85rem; color: #475569; margin-bottom: 10px;">Building 10B, DLF Cyber City, Sector 24, Gurugram, Haryana 122002</p>
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--secondary);">✓ Serving 6 delivery zones • 20-30 min dispatch</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Corporate & Bulk Queries Box -->
+    <div style="background: #FFF; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); max-width: 760px; margin: 30px auto 0; text-align: center;">
+      <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--dark); margin-bottom: 8px;">Got Custom Requirements or Corporate Catering?</h3>
+      <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 24px;">We serve offices, co-working spaces, and student hostels with customized bulk tiffin plans across our delivery hubs.</p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="mailto:corporate@stackly.in" class="btn-primary">✉️ Email corporate@stackly.in</a>
+        <a href="tel:9876543210" class="btn-secondary">📞 Call +91 98765 43210</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="images/logo.webp" alt="Stackly">
+          </div>
+          <p>Wholesome home-style daily tiffin subscriptions and instant food delivery delivered hot to your doorstep.</p>
+
+          <!-- Social Media Icons linking to 404 page -->
+          <div class="footer-social-links" aria-label="Social media links">
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="plans.html">Tiffin Plans</a></li>
+            <li><a href="menu.html">A La Carte Menu</a></li>
+            <li><a href="track.html">Track Order</a></li>
+            <li><a href="about.html">About & FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Delivery Cities</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;">Active in major tech hubs & residential pockets:</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" class="footer-city-tag" data-city="Bengaluru">Bengaluru</button>
+            <button type="button" class="footer-city-tag" data-city="Mumbai">Mumbai</button>
+            <button type="button" class="footer-city-tag" data-city="Pune">Pune</button>
+            <button type="button" class="footer-city-tag" data-city="Hyderabad">Hyderabad</button>
+            <button type="button" class="footer-city-tag" data-city="Delhi NCR">Gurugram / NCR</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support & Inquiries</h4>
+          <p style="font-size: 0.9rem;">📞 +91 98765 43210</p>
+          <p style="font-size: 0.9rem; margin-top: 6px;">✉️ care@stackly.in</p>
+          <p style="font-size: 0.8rem; margin-top: 8px; color: var(--muted);">🏅 FSSAI Certified Homely Cloud Kitchens.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Stackly Technologies Pvt. Ltd. All rights reserved.</p>
+        <p><a href="index.html">Back to Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

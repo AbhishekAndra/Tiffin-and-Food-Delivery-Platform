@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Food Cart & Checkout | Stackly</title>
+  <meta name="description" content="Review your meal selections, apply coupons, enter delivery address, and complete your order securely.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo-area">
+        <a href="index.html" class="brand-logo">
+          <img src="images/logo.webp" alt="Stackly" class="brand-logo-img">
+        </a>
+
+        <button class="location-picker" id="locationPickerBtn" title="Change delivery location">
+          <span class="loc-icon">📍</span>
+          <span id="currentLocationText">Indiranagar, Bengaluru</span>
+          <span style="font-size: 0.7rem; color: var(--muted);">▼</span>
+        </button>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="plans.html">Tiffin Plans</a></li>
+          <li><a href="menu.html">Food Menu</a></li>
+          <li><a href="track.html">Track Order</a></li>
+          <li><a href="about.html">About & FAQs</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn-track">Login</a>
+        <a href="track.html" class="btn-track">
+          <span>🛵</span> Track Order
+        </a>
+
+        <a href="cart.html" class="btn-cart" id="btnOpenCart" aria-label="Shopping Cart">
+          <span>🛒</span>
+          <span>Cart</span>
+          <span class="cart-count-badge" id="cartBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container">
+      <span class="section-tag">Checkout</span>
+      <h1>Your Cart & Order Details</h1>
+      <p>Review your meal items, choose delivery slot, and complete your order.</p>
+    </div>
+  </section>
+
+  <!-- Main Cart Container -->
+  <main class="container">
+    <!-- Empty Cart State -->
+    <div id="cartPageEmptyState" style="text-align: center; padding: 80px 20px; display: none;">
+      <div style="font-size: 4rem; margin-bottom: 14px;">🧺</div>
+      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--dark); margin-bottom: 8px;">Your cart is empty!</h2>
+      <p style="font-size: 1rem; color: var(--muted); margin-bottom: 24px;">Add a wholesome daily tiffin subscription or a delicious single meal to proceed.</p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="plans.html" class="btn-primary">Browse Tiffin Plans</a>
+        <a href="menu.html" class="btn-secondary">Browse Food Menu</a>
+      </div>
+    </div>
+
+    <!-- Active Cart & Checkout Grid -->
+    <div class="cart-page-grid" id="cartPageContentWrapper">
+      <!-- Left Column: Items & Coupon -->
+      <div class="cart-card-panel">
+        <h3 class="cart-card-title">
+          <span>🛒 Selected Items</span>
+        </h3>
+
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cartPageItemsList">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+        <!-- Promo Code Box -->
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-light);">
+          <label class="form-label" style="margin-bottom: 8px;">Have a Promo Code?</label>
+          <div class="coupon-box">
+            <input type="text" class="coupon-input" id="pageCouponInput" placeholder="Try FIRSTTIFFIN or DESI50">
+            <button class="btn-apply-coupon" id="btnApplyPageCoupon">Apply</button>
+          </div>
+          <div id="pageCouponMessage" style="font-size: 0.85rem; margin-top: 6px; font-weight: 700;"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Delivery Details, Bill & Payment -->
+      <div class="cart-card-panel">
+        <h3 class="cart-card-title">
+          <span>📍 Delivery & Payment</span>
+        </h3>
+
+        <form id="pageCheckoutForm">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" class="form-input" id="pageCustName" required placeholder="e.g. Priyanshu Sharma">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input type="tel" class="form-input" id="pageCustPhone" required placeholder="e.g. 9876543210" maxlength="10">
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <label class="form-label">Delivery Address *</label>
+              <button type="button" class="btn-change-order-loc" style="background: none; border: none; color: var(--primary); font-size: 0.78rem; font-weight: 700; cursor: pointer; text-decoration: underline;">Change Area</button>
+            </div>
+            <textarea class="form-textarea" id="pageCustAddress" rows="2" required placeholder="Flat / House no, Society, Street, Landmark..."></textarea>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+              <span>📍 Delivering to:</span>
+              <strong class="order-delivery-loc-name" style="color: var(--dark);">Indiranagar, Bengaluru</strong>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Delivery Slot</label>
+            <select class="form-select" id="pageCustSlot">
+              <option value="Lunch (12:30 PM - 2:00 PM)">Lunch (12:30 PM - 2:00 PM)</option>
+              <option value="Dinner (7:30 PM - 9:30 PM)">Dinner (7:30 PM - 9:30 PM)</option>
+              <option value="Breakfast (7:30 AM - 9:00 AM)">Breakfast (7:30 AM - 9:00 AM)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Payment Mode</label>
+            <div class="payment-options-grid">
+              <div class="payment-option-card selected" data-method="upi">
+                <div style="font-size: 1.2rem;">📱</div>
+                <span>UPI / QR</span>
+              </div>
+              <div class="payment-option-card" data-method="card">
+                <div style="font-size: 1.2rem;">💳</div>
+                <span>Card</span>
+              </div>
+              <div class="payment-option-card" data-method="cod">
+                <div style="font-size: 1.2rem;">💵</div>
+                <span>Cash</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bill Summary -->
+          <div class="cart-bill-box" style="margin: 20px 0;">
+            <div class="bill-line">
+              <span>Item Total</span>
+              <span id="pageSubtotal">₹0</span>
+            </div>
+            <div class="bill-line">
+              <span>Delivery Partner Fee</span>
+              <span id="pageDelivery">₹30</span>
+            </div>
+            <div class="bill-line">
+              <span>Govt. Taxes (5%)</span>
+              <span id="pageTax">₹0</span>
+            </div>
+            <div class="bill-line" id="pageDiscountRow" style="display: none; color: var(--secondary);">
+              <span>Coupon Discount</span>
+              <span id="pageDiscount">-₹0</span>
+            </div>
+            <div class="bill-line total">
+              <span>Grand Total</span>
+              <span id="pageTotal" style="color: var(--primary);">₹0</span>
+            </div>
+          </div>
+
+          <button class="btn-primary" style="width: 100%; justify-content: center; padding: 16px; font-size: 1.05rem;" id="btnPlaceOrderPage">
+            <span>Place Order</span>
+            <span id="pagePayBtnAmount" style="margin-left: 6px;">Pay ₹0</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="images/logo.webp" alt="Stackly">
+          </div>
+          <p>Wholesome home-style daily tiffin subscriptions and instant food delivery delivered hot to your doorstep.</p>
+
+          <!-- Social Media Icons linking to 404 page -->
+          <div class="footer-social-links" aria-label="Social media links">
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="plans.html">Tiffin Plans</a></li>
+            <li><a href="menu.html">A La Carte Menu</a></li>
+            <li><a href="track.html">Track Order</a></li>
+            <li><a href="about.html">About & FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Need Assistance?</h4>
+          <p style="font-size: 0.9rem;">📞 +91 98765 43210</p>
+          <p style="font-size: 0.9rem; margin-top: 6px;">✉️ care@stackly.in</p>
+        </div>
+        <div class="footer-col">
+          <h4>Delivery Cities</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;">Active in major tech hubs & residential pockets:</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" class="footer-city-tag" data-city="Bengaluru">Bengaluru</button>
+            <button type="button" class="footer-city-tag" data-city="Mumbai">Mumbai</button>
+            <button type="button" class="footer-city-tag" data-city="Pune">Pune</button>
+            <button type="button" class="footer-city-tag" data-city="Hyderabad">Hyderabad</button>
+            <button type="button" class="footer-city-tag" data-city="Delhi NCR">Gurugram / NCR</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Stackly Technologies Pvt. Ltd. All rights reserved.</p>
+        <p>Pure HTML, CSS & JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-shell">
+  <!-- Background Video & Ambient Overlay -->
+  <div class="auth-video-container" aria-hidden="true">
+    <video class="auth-bg-video" autoplay muted loop playsinline poster="videos/auth-bg-poster.webp">
+      <source src="videos/auth-bg.mp4" type="video/mp4">
+    </video>
+    <div class="auth-video-overlay"></div>
+  </div>
+
+  <main class="auth-page">
+    <section class="auth-card" aria-labelledby="loginTitle">
+      <a href="index.html" class="auth-logo"><img src="images/logo.webp" alt="Stackly"></a>
+      <div class="auth-heading">
+        <span class="section-tag">Your daily meals, one tap away</span>
+        <h1 id="loginTitle">Welcome back</h1>
+        <p>Log in to manage your Stackly account and orders.</p>
+      </div>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="loginIdentity">Email or phone number</label>
+          <input class="form-input" id="loginIdentity" name="identity" autocomplete="username" required placeholder="you@example.com or 9876543210">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <input class="form-input" id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+        </div>
+        <div class="auth-options">
+          <label class="auth-check"><input id="rememberMe" type="checkbox" checked> Remember me</label>
+          <a class="text-button" id="forgotPassword" href="404.html">Forgot password?</a>
+        </div>
+        <p class="form-message" id="loginMessage" role="alert" aria-live="polite"></p>
+        <button class="btn-primary auth-submit" type="submit">Log In <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="auth-switch">Don’t have an account? <a href="signup.html">Sign Up</a></p>
+      <a class="auth-home-link" href="index.html">← Back to Stackly</a>
+    </section>
+  </main>
+  <script src="js/auth.js"></script>
+</body>
+</html>
